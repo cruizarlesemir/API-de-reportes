@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
 class ReporteControllerTests {
 
@@ -52,6 +54,7 @@ class ReporteControllerTests {
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.dni").value("12345678"))
                 .andExpect(jsonPath("$.tipo").value("DOMICILIARIA"))
+                .andExpect(jsonPath("$.fecha").value("2026-10-29T09:30:00"))
                 .andExpect(jsonPath("$.estado").value(1));
     }
 
