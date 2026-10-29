@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS reportesdb;
+USE reportesdb;
+
+CREATE TABLE IF NOT EXISTS reportes (
+    id INT NOT NULL AUTO_INCREMENT,
+    dni VARCHAR(8) NOT NULL,
+    fecha DATETIME NOT NULL,
+    tipo VARCHAR(30) NOT NULL,
+    direccion VARCHAR(200) NOT NULL,
+    referencia VARCHAR(255) NULL,
+    estado INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (id)
+);

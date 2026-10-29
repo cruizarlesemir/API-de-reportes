@@ -1,0 +1,37 @@
+databases:
+  - name: reportes-db
+    databaseName: reportesdb
+    user: reportes
+    plan: free
+
+services:
+  - type: web
+    name: reporteservice
+    runtime: docker
+    plan: free
+    healthCheckPath: /reportes/
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: DB_HOST
+        fromDatabase:
+          name: reportes-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: reportes-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: reportes-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: reportes-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: reportes-db
+          property: password
+      - key: JAVA_TOOL_OPTIONS
+        value: -XX:MaxRAMPercentage=75.0
